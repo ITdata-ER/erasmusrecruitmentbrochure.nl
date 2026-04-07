@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erasmus Recruitment | Login</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --raisin:      #3D1839;
+      --raisin-dark: #2A0F27;
+      --raspberry:   #E5004B;
+      --raspberry-lt:#FF3370;
+      --azure:       #3FEDE9;
+      --bg:          #ECEEEF;
+      --white:       #FFFFFF;
+    }
+
+    body {
+      font-family: Verdana, Geneva, sans-serif;
+      background: var(--raisin);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .login-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 3rem 2.5rem;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .login-logo {
+      width: 160px;
+      margin-bottom: 2rem;
+    }
+
+    .login-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--raisin);
+      margin-bottom: 0.4rem;
+    }
+
+    .login-sub {
+      font-size: 0.82rem;
+      color: #917E91;
+      margin-bottom: 2rem;
+    }
+
+    .input-wrap {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.8rem;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 0.9rem;
+      color: #202222;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .input-wrap input:focus {
+      border-color: var(--raspberry);
+    }
+
+    .input-wrap .icon {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--raspberry);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-login:hover { background: var(--raspberry-lt); }
+
+    .error-msg {
+      color: var(--raspberry);
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+      min-height: 1.2em;
+    }
+
+    .login-footer {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <img src="ER_logo_FC.png" alt="Erasmus Recruitment" class="login-logo" />
+    <p class="login-title">2026 – 2027 Company Packages</p>
+    <p class="login-sub">Enter the access password to continue.</p>
+
+    <form id="loginForm">
+      <div class="input-wrap">
+        <span class="icon">🔒</span>
+        <input type="password" id="passwordInput" placeholder="Password" autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn-login">Enter</button>
+    </form>
+    <p class="error-msg" id="errorMsg"></p>
+
+    <p class="login-footer">Erasmus Recruitment &nbsp;·&nbsp; Organised by EFR &amp; STAR</p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const val = document.getElementById('passwordInput').value;
+      if (val === 'ER2027') {
+        sessionStorage.setItem('er_auth', 'true');
+        window.location.href = 'index.html';
+      } else {
+        document.getElementById('errorMsg').textContent = 'Incorrect password. Please try again.';
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+    });
+  </script>
+
+</body>
+</html>
